@@ -11,7 +11,6 @@ try:
         database='dbdatahora',
         port='24043'
     )
-
     cursor = connection.cursor()
     cursor.execute("SELECT current_database();")
     database_name = cursor.fetchone()
