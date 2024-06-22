@@ -39,7 +39,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v6.4
       with:
         image: gbrlscosta/pipeline_data-hora 
-        tags: ${{github.run_number}}
+        tags: ${{github.run_number}}_prod
         registry: docker.io 
         dockerfile: Dockerfile
         username: ${{secrets.dockeruser}}
