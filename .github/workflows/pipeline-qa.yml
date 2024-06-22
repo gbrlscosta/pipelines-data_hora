@@ -1,0 +1,48 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Python application
+
+on:
+  push:
+    branches: [ "QA" ]
+  pull_request:
+    branches: [ "QA" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: teste
+      run: coverage run -m data-teste
+
+    - name: relatorio
+      run: coverage report
+      
+    - name: Publicando no Docker 
+      uses: mr-smithers-excellent/docker-build-push@v6.4
+      with:
+        image: gbrlscosta/pipeline_data-hora 
+        tags: ${{github.run_number}}
+        registry: docker.io 
+        dockerfile: Dockerfile
+        username: ${{secrets.dockeruser}}
+        password: ${{secrets.dockerpwd}}
+    - name: qa
+      run: echo estou na branch QA
