@@ -26,7 +26,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
     - name: teste
       run: coverage run -m data-teste
 
