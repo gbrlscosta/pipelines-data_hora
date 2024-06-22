@@ -32,7 +32,7 @@ try:
     
     codigo = dados['codigo'].max() + 1
 
-    novo_dado_excel = pd.DataFrame({"Data": [data_atual], "Hora": [hora_atual], "Código": [codigo]})
+    novo_dado_excel = pd.DataFrame({"codigo": [codigo], "data": [data_atual], "hora": [hora]})
     dados = pd.concat([dados, novo_dado_excel], ignore_index=True)
 
     dados.to_excel("data_hora.xlsx", index=False)
