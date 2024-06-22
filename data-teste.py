@@ -24,7 +24,6 @@ try:
     registros = cursor.fetchall()
 
     colunas = [desc[0] for desc in cursor.description]
-
     dados = pd.DataFrame(registros, columns=colunas)
 
     data_atual = datetime.now().strftime("%Y-%m-%d")
