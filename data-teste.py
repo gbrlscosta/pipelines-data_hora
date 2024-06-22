@@ -46,7 +46,7 @@ try:
     cursor.execute(insert_query, valores)
     connection.commit()
 
-    print(dados)
+    print("SOMENTE TESTANDO RSRSRS")
     
 except (Exception, psycopg2.Error) as error:
     print("Erro ao inserir dados:", error)
